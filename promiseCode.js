@@ -100,3 +100,20 @@ button.addEventListener("click", () => {
 // promiseTwo.finally(()=>{
 //     console.log('Promise 2 ended')
 // }) //
+
+
+//modification in promises
+function runPromise(statement, delay) {
+  return new Promise((resolve, reject)=>{
+    setTimeout(() => {
+      console.log(statement);
+      if(statement === 5) reject()
+      resolve();
+    }, delay);
+  })
+}
+runPromise('promise one', 2000)
+.then(() => runPromise(5, 1000))
+.then(() => runPromise('promise two', 500))
+.catch(() => console.log('promise two failed'))
+.finally(() => console.log('promise ended'));
